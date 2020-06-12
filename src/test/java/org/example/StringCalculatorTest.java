@@ -112,5 +112,17 @@ class StringCalculatorTest {
         String input = "2,1001";
         assertEquals(expected, stringCalculator.add(input));
     }
-    
+
+    @Test
+    public void add_multiLengthCustomDelimiter_positive(){
+        int expected = 10;
+        String inputCase1 = "//[;;;]\n1;;;2;;;3;;;4";
+        String inputCase2 = "//[;;;]\n1;;;2;;;3\n4";
+        String inputCase3 = "//[;;;]\n10";
+        String inputCase4 = "//[;;;]\n";
+        assertEquals(expected, stringCalculator.add(inputCase1));
+        assertEquals(expected, stringCalculator.add(inputCase2));
+        assertEquals(expected, stringCalculator.add(inputCase3));
+        assertEquals(0, stringCalculator.add(inputCase4));
+    }
 }
