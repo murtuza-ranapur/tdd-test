@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class StringCalculator {
     private static final String DEFAULT_DELIMITER = ",";
 
+    private int count;
     /**
      * Takes input in form of String. Adds multiple numbers.
      * Sample input "1,2". Sequence of numbers should be
@@ -21,6 +22,7 @@ public class StringCalculator {
      */
     public int add(String numbers) {
         int sum = 0;
+        count++;
         String delimiter = DEFAULT_DELIMITER;
         if(numbers.startsWith("//")){
             String [] temp = numbers.split("\n", 2);
@@ -45,6 +47,10 @@ public class StringCalculator {
             throw new NumberOutOfRangeException("Negatives not allowed :"+negativeNums);
         }
         return sum;
+    }
+
+    public int getCalledCount(){
+        return count;
     }
 
 }

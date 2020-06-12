@@ -8,10 +8,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class StringCalculatorTest {
 
-    public static StringCalculator stringCalculator;
+    public StringCalculator stringCalculator;
 
-    @BeforeAll
-    static void setUp() {
+    @BeforeEach
+    void setUp() {
         stringCalculator = new StringCalculator();
     }
 
@@ -89,6 +89,21 @@ class StringCalculatorTest {
             return;
         }
         fail("No exception thrown");
+    }
+
+    @Test
+    public void getCount_4times_positive(){
+        int expected = 4;
+        String inputCase1 = "1,2";
+        String inputCase2 = "2,3,4";
+        String inputCase3 = "1";
+        String inputCase4 = "7,8";
+        assertEquals(0, stringCalculator.getCalledCount());
+        stringCalculator.add(inputCase1);
+        stringCalculator.add(inputCase2);
+        stringCalculator.add(inputCase3);
+        stringCalculator.add(inputCase4);
+        assertEquals(expected, stringCalculator.getCalledCount());
     }
     
 }
