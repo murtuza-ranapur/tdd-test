@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class StringCalculator {
     private static final String DEFAULT_DELIMITER = ",";
     private static final int THRESHOLD = 1000;
-    private static final Pattern pattern = Pattern.compile("\\[(.*)\\]");
+    private static final Pattern pattern = Pattern.compile("\\[([^\\[\\]]+)\\]");
 
     private int count;
     /**
@@ -59,10 +59,23 @@ public class StringCalculator {
 
     private String getDelimiter(String s) {
         Matcher matcher = pattern.matcher(s);
-        if(matcher.find()){
-            return matcher.group(1);
+        List<String> delimiters = new ArrayList<>();
+        while (matcher.find()){
+            delimiters.add(matcher.group(1));
         }
-        return s.substring(2,3);
+        if(delimiters.size() > 0){
+            return delimiters.stream().map(this::escapeCharacter).collect(Collectors.joining("|"));
+        }
+        return escapeCharacter(s.substring(2,3));
+    }
+
+    private String escapeCharacter(String s){
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            sb.append("\\");
+            sb.append(s.charAt(i));
+        }
+        return sb.toString();
     }
 
     public int getCalledCount(){
