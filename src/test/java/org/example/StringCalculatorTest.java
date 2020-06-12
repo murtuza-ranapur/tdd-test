@@ -62,5 +62,13 @@ class StringCalculatorTest {
         assertEquals(expected, stringCalculator.add(inputCase3));
         assertEquals(0, stringCalculator.add(inputCase4));
     }
+
+    @Test
+    public void add_negativeInteger_negative(){
+        String inputCase1 = "1,2,-3,4";
+        assertThrows(NumberOutOfRangeException.class, ()->{
+            stringCalculator.add(inputCase1);
+        });
+    }
     
 }

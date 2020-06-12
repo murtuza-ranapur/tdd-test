@@ -27,7 +27,11 @@ public class StringCalculator {
             return 0;
         String [] nums = numbers.split(splitRegex);
         for (String num : nums) {
-            sum += Integer.parseInt(num);
+            int i = Integer.parseInt(num);
+            if(i < 0) {
+                throw new NumberOutOfRangeException("Negatives not allowed : "+i);
+            }
+            sum += i;
         }
         return sum;
     }
