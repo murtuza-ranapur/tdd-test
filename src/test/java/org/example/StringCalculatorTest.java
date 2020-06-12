@@ -105,5 +105,12 @@ class StringCalculatorTest {
         stringCalculator.add(inputCase4);
         assertEquals(expected, stringCalculator.getCalledCount());
     }
+
+    @Test
+    public void add_numberBiggerThanThousand_positive(){
+        int expected = 2;
+        String input = "2,1001";
+        assertEquals(expected, stringCalculator.add(input));
+    }
     
 }

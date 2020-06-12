@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class StringCalculator {
     private static final String DEFAULT_DELIMITER = ",";
+    private static final int THRESHOLD = 1000;
 
     private int count;
     /**
@@ -38,6 +39,8 @@ public class StringCalculator {
             int i = Integer.parseInt(num);
             if(i < 0) {
                 negatives.add(i);
+                continue;
+            } else if(i > THRESHOLD){
                 continue;
             }
             sum += i;
