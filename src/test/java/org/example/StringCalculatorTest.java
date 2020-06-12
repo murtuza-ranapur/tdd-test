@@ -42,5 +42,12 @@ class StringCalculatorTest {
         String input = "1,2,3,4";
         assertEquals(expected, stringCalculator.add(input));
     }
+
+    @Test
+    public void add_multiInputWithNewLine_positive(){
+        int expected = 10;
+        String input = "1\n2,3\n4";
+        assertEquals(expected, stringCalculator.add(input));
+    }
     
 }
