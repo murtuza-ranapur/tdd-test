@@ -1,5 +1,10 @@
 package org.example;
 
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class StringCalculator {
     private static final String DEFAULT_DELIMITER = ",";
 
@@ -26,12 +31,18 @@ public class StringCalculator {
         if(numbers.isEmpty())
             return 0;
         String [] nums = numbers.split(splitRegex);
+        List<Integer> negatives = new ArrayList<>();
         for (String num : nums) {
             int i = Integer.parseInt(num);
             if(i < 0) {
-                throw new NumberOutOfRangeException("Negatives not allowed : "+i);
+                negatives.add(i);
+                continue;
             }
             sum += i;
+        }
+        String negativeNums = negatives.stream().map(a -> ""+a).collect(Collectors.joining(","));
+        if(negatives.size() > 0){
+            throw new NumberOutOfRangeException("Negatives not allowed :"+negativeNums);
         }
         return sum;
     }

@@ -66,9 +66,29 @@ class StringCalculatorTest {
     @Test
     public void add_negativeInteger_negative(){
         String inputCase1 = "1,2,-3,4";
-        assertThrows(NumberOutOfRangeException.class, ()->{
+        String expected = "-3";
+        try{
             stringCalculator.add(inputCase1);
-        });
+        }catch (NumberOutOfRangeException e){
+            String number = e.getMessage().split(":")[1];
+            assertEquals(expected, number);
+            return;
+        }
+        fail("No exception thrown");
+    }
+
+    @Test
+    public void add_multipleNegativeInteger_negative(){
+        String inputCase1 = "1,2,-3,-4";
+        String expected = "-3,-4";
+        try{
+            stringCalculator.add(inputCase1);
+        }catch (NumberOutOfRangeException e){
+            String number = e.getMessage().split(":")[1];
+            assertEquals(expected, number);
+            return;
+        }
+        fail("No exception thrown");
     }
     
 }
