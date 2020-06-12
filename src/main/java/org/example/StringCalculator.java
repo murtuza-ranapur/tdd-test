@@ -20,10 +20,14 @@ public class StringCalculator {
      * You can also provide your own delimiter by following this given
      * standard. '//[delimiter]\n[numbers]' e.g., //;\n1;2
      *
-     * If want to provide variable length delimiter use the following format
+     * For variable length delimiter use the following format
      * '//[delimiter]\n[numbers]' e.g., //[;;]\n1;;2
      *
+     * For multiple variable length delimiter use the following format
+     * '//[delimiter1][delimiter2]..[delimiterN]\n[numbers]' e.g., //[;;][**]\n1;;2**3
+     *
      * @param numbers String sequence of numbers
+     * @exception NumberOutOfRangeException if negative integer present
      * @return integer sum of given numbers
      */
     public int add(String numbers) {
